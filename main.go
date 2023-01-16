@@ -2,20 +2,17 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
+
+	"github.com/lanpaiva/go-rest-api/models"
+	"github.com/lanpaiva/go-rest-api/routes"
 )
 
-func Home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Home page")
-}
-
-func HandleRequest() {
-	http.HandleFunc("/", Home)
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
-
 func main() {
+	models.Personalidades = []models.Personalidade{
+		{Nome: "Nome 1", Historia: "historia 1"},
+		{Nome: "Nome 2", Historia: "historia 2"},
+	}
 	fmt.Println("Ola, Mundo")
-	HandleRequest()
+
+	routes.HandleRequest()
 }
